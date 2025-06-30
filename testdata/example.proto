@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package testdata;
+
+import "google/protobuf/duration.proto";
+
+option go_package = "/testdata";
+
+service ExampleService {
+  rpc Get (RequestMessage) returns (ExampleResponse) {}
+}
+
+message RequestMessage {
+  message NestedMessage {
+    string field = 1;
+  }
+
+  message NestedNoValidMessage {
+    string field = 1;
+  }
+
+  string required_field = 1;
+
+  int64 valid_field = 2;
+  google.protobuf.Duration valid_args = 3;
+  repeated string valid_repeated = 4;
+  repeated string required_repeated = 5;
+  map<string, string> valid_map = 6;
+  map<string, string> required_map = 7;
+
+  repeated string length_field1 = 8;
+  repeated string length_field2 = 9;
+  repeated string length_valid = 10;
+
+  oneof oneof_field {
+    string oneof_valid = 11;
+    int64 oneof_value = 12;
+    InnerMessage oneof_inner = 13;
+    NestedMessage nested_message = 14; // Note: field name == message name
+  }
+
+  int64 value1 = 15;
+  int64 value2 = 16;
+  int64 value3 = 17;
+  int64 value4 = 18;
+
+  InnerMessage inner_field = 19;
+  InnerMessage required_inner_field = 20;
+  repeated InnerMessage repeated_inner_field = 21;
+  repeated InnerMessage repeated_required_inner_field = 22;
+  InnerNoValidMessage inner_novalid = 23;
+  InnerNoValidMessage required_inner_novalid = 24;
+  repeated InnerNoValidMessage repeated_inner_novalid = 25;
+  repeated InnerNoValidMessage repeated_required_inner_novalid = 26;
+  InnerEmptyMessage inner_empty = 27;
+  InnerWithInnerMessage inner_with_inner = 28;
+  repeated InnerWithInnerMessage repeated_inner_with_inner = 29;
+
+  NestedMessage nested_valid = 30;
+  NestedNoValidMessage nested_novalid = 31;
+
+  NestedMessage nested_fieldmask = 32;
+
+  ExampleEnum required_enum_field = 33;
+
+  map<string, string> map_param = 34;
+  map<string, InnerMessage> map_inner_param = 35;
+  map<string, NestedMessage> map_nested_param = 36;
+  string checked_string = 37;
+}
+
+message ExampleResponse{}
+
+message InnerMessage {
+  string innner_id = 100;
+  repeated string inner_repeated = 101;
+}
+
+message InnerNoValidMessage {
+  string inner_id = 200;
+}
+
+message InnerEmptyMessage {}
+
+message InnerWithInnerMessage {
+  InnerMessage inner_message = 300;
+}
+
+enum ExampleEnum {
+  EXAMPLE_ENUM_UNSPECIFIED = 0;
+  VALID1 = 1;
+  VALID2 = 2;
+}

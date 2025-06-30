@@ -1,0 +1,23 @@
+# Allow docker files
+!Dockerfile
+
+/.cache
+
+.idea/
+.vscode/
+.clangd
+.antlr/
+
+# Develop IDE
+.vs/
+
+# fuzzing example
+example/corpus/
+example/cov*
+example/crash*
+example/go-fuzz.a
+example/go-fuzz.h
+example/fuzz
+example/result.html
+example/result.txt
+example/result_func.txt
