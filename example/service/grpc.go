@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	pb "go-protobuf-mutator/testdata"
+	pb "github.com/yandex-cloud/go-protobuf-mutator/testdata"
 )
 
 type service struct {

@@ -1,9 +1,10 @@
 package mutator
 
 import (
-	testdata "go-protobuf-mutator/testdata"
 	"testing"
 	"time"
+
+	testdata "github.com/yandex-cloud/go-protobuf-mutator/testdata"
 
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/proto"

@@ -7,7 +7,7 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 
-	pb "go-protobuf-mutator/testdata"
+	pb "github.com/yandex-cloud/go-protobuf-mutator/testdata"
 )
 
 func TestParseProtoMessage(t *testing.T) {
