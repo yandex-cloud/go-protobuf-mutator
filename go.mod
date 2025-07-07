@@ -1,4 +1,4 @@
-module go-protobuf-mutator
+module github.com/yandex-cloud/go-protobuf-mutator
 
 go 1.22
 

@@ -4,13 +4,14 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"go-protobuf-mutator/example/service"
+
+	"github.com/yandex-cloud/go-protobuf-mutator/example/service"
 
 	"google.golang.org/protobuf/encoding/prototext"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 
-	pb "go-protobuf-mutator/testdata"
+	pb "github.com/yandex-cloud/go-protobuf-mutator/testdata"
 )
 
 func ParseProtoMessage(data []byte) ([]byte, handler, proto.Message, error) {

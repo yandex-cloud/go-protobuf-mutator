@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"unsafe"
 
-	mutator "go-protobuf-mutator"
+	mutator "github.com/yandex-cloud/go-protobuf-mutator"
 )
 
 // #include <stdint.h>
