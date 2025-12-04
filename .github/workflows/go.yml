@@ -26,3 +26,9 @@ jobs:
 
     - name: Test
       run: go test -v ./...
+
+    - name: Run example
+      run: |
+        cd example
+        make build-docker
+        docker run --rm --network=host -v "$PWD/../.:/workdir" -w /workdir/example fuzzing:v1.0.0 /bin/bash -exc 'cp -r initial-corpus/ corpus; make coverage DURATION=60'
