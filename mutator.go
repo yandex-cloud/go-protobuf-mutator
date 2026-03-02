@@ -288,14 +288,28 @@ func (m *mutator) mutateProtoValue(field protoreflect.FieldDescriptor, protoValu
 			return protoValue, err
 		}
 		return protoreflect.ValueOf(value), nil
-	case protoreflect.Int32Kind, protoreflect.Int64Kind:
+	case protoreflect.Int32Kind:
+		value := protoValue.Int()
+		err := MutateInt64(m.random, &value)
+		if err != nil {
+			return protoValue, err
+		}
+		return protoreflect.ValueOf(int32(value)), nil
+	case protoreflect.Int64Kind:
 		value := protoValue.Int()
 		err := MutateInt64(m.random, &value)
 		if err != nil {
 			return protoValue, err
 		}
 		return protoreflect.ValueOf(value), nil
-	case protoreflect.Uint32Kind, protoreflect.Uint64Kind:
+	case protoreflect.Uint32Kind:
+		value := protoValue.Uint()
+		err := MutateUint64(m.random, &value)
+		if err != nil {
+			return protoValue, err
+		}
+		return protoreflect.ValueOf(uint32(value)), nil
+	case protoreflect.Uint64Kind:
 		value := protoValue.Uint()
 		err := MutateUint64(m.random, &value)
 		if err != nil {

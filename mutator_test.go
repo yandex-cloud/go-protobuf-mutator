@@ -8,6 +8,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 	"google.golang.org/protobuf/proto"
+	"google.golang.org/protobuf/types/dynamicpb"
 )
 
 const (
@@ -74,4 +75,38 @@ func Test_mutator_Mutate(t *testing.T) {
 			require.False(t, proto.Equal(tmp, tt.msg))
 		})
 	}
+}
+
+func Test_mutator_MutateDynamicProtoWithInt32(t *testing.T) {
+	typedMsg := &testdata.Int32Message{
+		Value1: 10,
+	}
+
+	// Get the descriptor from the typed message
+	desc := typedMsg.ProtoReflect().Descriptor()
+	// Create a new dynamic message with that descriptor
+	dynMsg := dynamicpb.NewMessage(desc)
+	// Copy data from the original to the dynamic message
+	proto.Merge(dynMsg, typedMsg)
+
+	// Create a mutator
+	m := New(time.Now().Unix(), int(MB))
+	require.NoError(t, m.MutateProto(dynMsg))
+}
+
+func Test_mutator_MutateDynamicProtoWithUInt32(t *testing.T) {
+	typedMsg := &testdata.UInt32Message{
+		Value1: 10,
+	}
+
+	// Get the descriptor from the typed message
+	desc := typedMsg.ProtoReflect().Descriptor()
+	// Create a new dynamic message with that descriptor
+	dynMsg := dynamicpb.NewMessage(desc)
+	// Copy data from the original to the dynamic message
+	proto.Merge(dynMsg, typedMsg)
+
+	// Create a mutator
+	m := New(time.Now().Unix(), int(MB))
+	require.NoError(t, m.MutateProto(dynMsg))
 }
