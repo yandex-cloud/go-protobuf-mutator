@@ -91,3 +91,11 @@ enum ExampleEnum {
   VALID1 = 1;
   VALID2 = 2;
 }
+
+message Int32Message {
+  int32 value1 = 1;
+}
+
+message UInt32Message {
+  uint32 value1 = 1;
+}
